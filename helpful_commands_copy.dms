@@ -1,0 +1,123 @@
+CONDA
+conda config --add channels conda-forge
+conda create -n realtime python=3 xarray==0.8.2 matplotlib pip ipykernel
+conda install -n realtime futures requests
+conda remove -n realtime matplotlib futures requests
+conda list -n realtime
+conda env list
+conda env remove -n realtime
+conda list -e > req.txt
+conda create -n new environment --file req.txt
+
+To recreate our cluster locally:
+First install homebrew: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+1. create directory called "repos" from your root directry 
+2. clone "dotfiles" and "pangeo"
+3. link dotfiles and edit .bashrc
+4. create .bash_profile "if [ -f ~/.bashrc ]; then . ~/.bashrc; fi"
+5. install conda: https://conda.io/docs/user-guide/install/macos.html
+6. download; and navagate to downloads to excecute step 2.
+7. take code added to .bash_profile and add it to .bashrc
+8. navagate to repos/pangeo/conda and >>conda env create -f environment.yaml
+9. navagate to repos >> source activate pangeo
+10. jupyter labextension install @jupyter-widgets/jupyterlab-manager
+11. jupyter labextension install @pyviz/jupyterlab_pyviz
+12. jupyter labextension install jupyterlab_bokeh
+13. conda install -c intake intake---- make sure pangeo is not activated
+14. launch jupyterlab... >> jupyter lab
+15. brew install jq
+16. replace 8.8.8.8 with default ip address 127.0.0.1 at line 140 in 
+16a anaconda3/envs/pangeo/lib/python3.6/site-packages/distributed/utils.12b pymake 140 >> def get_ip(host='127.0.0.1', port=80):
+
+JUPYTER
+python2 -m ipykernel install --sys-prefix
+python -m ipykernel install --user --name ooi --display-name ooi
+jupyter kernelspec list
+jupyter kernelspec remove ooi
+ps -ef | grep ipykernel
+ps -ef | grep jupyter
+to create a new environment:
+conda create -n daxenv obspy matplotlib xarray pandas geopandas numpy requests ipykernel cartopy
+conda env list
+source activate daxenv
+source deactivate 
+python -m ipykernel install --user --name daxenv
+
+PYTHON
+xr.version.version
+slice notation [start:stop:step]
+performance test
+import xarray as xr
+import time
+start_time = time.time()
+
+BASH
+uname -a
+cat /etc/*-release
+history | grep docker
+for path, subdirs, files in os.walk('.'):
+    for i in files:
+        os.rename(os.path.join(path,i),os.path.join(path,i)[:-15]+'.csv')
+nohup python CE02SHBP.py >/dev/null 2>&1 &
+nohup python annual_stats.py > cabled_nohup.txt &
+dos2unix filename
+ncdump -h file.nc
+ncdump -v variable file.nc
+with the plot-ooi-nc toolbox setup.py
+pip install .
+pip install --no-deps -U .
+pids=$(ps -u knuth | grep python | awk '{print $1}')
+ps -u knuth | grep python
+echo $pids
+kill $pids
+kill 3290
+kill 3291
+wget -r -np -e robots=off -A png https://rawdata.oceanobservatories.org/files/RS03INT1/MJ03C/05-CAMDSB303/
+wget ftp://ftp.pmel.noaa.gov/newport/chadwick/4dax/Thomson_tide_prediction_MJ03B_2017-2030.zip
+
+## Tar files in one place
+sudo tar -zcvf ssh.tgz .ssh
+#### download; upload; untar; remove tared file
+tar -xvf ssh.tgz
+
+To look at a few lines of a long file: sed '1570, 1580!d' pred_F.csv
+
+Concatanate a bunch of files: cat pred_F* > pred_F.txt
+
+Install Headders: echo 'year month day hour minute second height' | cat - pred_F.txt > tmp.txt
+
+### create symbolic links to dofiles 
+ln -s dotfiles/.vimrc
+ls -lat
+
+GITHUB
+Assuming you did not commit the file, or add it to the index, then:
+git checkout -- filename
+Assuming you added it to the index, but did not commit it, then:
+git reset HEAD filename
+git checkout -- filename
+Assuming you did commit it, then:
+git checkout origin/master filename
+Assuming you want to blow away all commits from your branch (VERY DESTRUCTIVE):
+git reset --hard origin/master
+git diff HEAD d
+history | grep git
+git remote add rabernat https://github.com/rabernat/zarr.git
+git remote add upstream https://github.com/zarr-developers/zarr
+git merge upstream/master
+git push
+git remote -v
+git branch -r
+watch -c git lg
+git checkout -b gcs_store
+git fetch upstream
+git fetch tjcrone
+git reset --hard 6c47
+git checkout -b ooigcp
+git stash 
+git rebase -i xxx 
+git stash pop
+git diff
+git caa # amend previous commmit 
+git commit -am "Update configureation"
+
